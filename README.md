@@ -17,7 +17,13 @@ gcc your_code.c -o -pthread
 using the given Makefile
 
 ```shell
-make all
+make all # Compile all given code
+```
+```shell
+make parallel_downloader # Compile parallel_downloader
+```
+```shell
+make clean # clean all binary and other trash files
 ```
 
 # POSIX function
