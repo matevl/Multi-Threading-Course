@@ -1,17 +1,29 @@
-# Multi-Theading-Course
+# Multi-Threading-Course
 Here is my support course for introduce Multi-threading with POSIX
+
+# Install Library
+```shell
+sudo apt-get install libcurl4-openssl-dev #for testing parallel_downloader
+```
 
 # Compiling with POSIX Threads
 
 require pthread.h
 
-```bash
+```shell
 gcc your_code.c -o -pthread
 ```
+
+using the given Makefile
+
+```shell
+make all
+```
+
 # POSIX function
 
 ## Create a thread
-```c
+```c++
 int pthread_create(pthread_t *thread,
                     const pthread_attr_t *attr, //Attributes
                     void *(*start) (void *),    //Thread function
@@ -19,12 +31,12 @@ int pthread_create(pthread_t *thread,
 ```
 
 ## Terminate all threads
-```c
-pthread_exit()
+```c++
+void pthread_exit(void *retval);
 ```
 
 ## Terminate a single threads
-```c
+```c++
 int pthread_join(pthread_t thread, void **retval);
 ```
 
@@ -34,7 +46,7 @@ int pthread_detach(pthread_t thread);
 ```
 
 ## Thread concurrency
-```c
+```c++
 // Declaration and Initialization
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
  
