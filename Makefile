@@ -1,0 +1,12 @@
+CC := gcc
+LDLIBS := -Wall -Wextra -Werror -pthread
+
+SRC_PARRALEL_TASK = parrallel_task.c
+OBJS_PARRALEL_TASK = $(SRC_PARRALEL_TASK:.c=.o)
+TARGET_PARRALEL_TASK = parrallel_task
+
+$(TARGET_PARRALEL_TASK): $(OBJS_PARRALEL_TASK)
+
+.PHONY: clean
+clean:
+	$(RM) $(TARGET_PARRALEL_TASK) $(OBJS_PARRALEL_TASK)

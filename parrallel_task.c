@@ -12,10 +12,8 @@ int main() {
 	int *array = malloc(sizeof(int) * size);
     for (int i = 0; i < 4; i++) {
 
-    int pthread_create(pthread_t *thread,
-                    const pthread_attr_t *attr, //Attributes
-                    void *(*start) (void *),    //Thread function
-                    void *arg);
     }
+
+    free(array);
     return 0;
 }
