@@ -8,19 +8,20 @@ sudo apt-get install libcurl4-openssl-dev #for testing parallel_downloader
 
 # Compiling with POSIX Threads
 
-require pthread.h
+Require pthread.h
 
 ```shell
 gcc your_code.c -o -pthread
 ```
 
-using the given Makefile
+Using the given Makefile
 
 ```shell
 make all # Compile all given code
 ```
 ```shell
 make parallel_downloader # Compile parallel_downloader
+make matrix_mult # Compile matrix_mult
 ```
 ```shell
 make clean # clean all binary and other trash files
