@@ -1,7 +1,14 @@
 # Multi-Threading-Course
 Here is my support course for introduce Multi-threading with POSIX
 
-# Install Library
+# Prerequisite Knowledge
+To understand this course, familiarize yourself with the following C programming concepts:
+
+- Basic C Syntax: Data types, control structures (if, for, while), and functions.
+- Memory Allocation: Dynamic memory management using malloc, calloc, realloc, and free.
+- Function Pointers: Understanding how to use function pointers, essential for pthread.
+
+# Prerequisite Librarys
 ```shell
 sudo apt-get install libcurl4-openssl-dev #for testing parallel_downloader
 ```
