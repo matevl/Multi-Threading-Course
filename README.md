@@ -10,6 +10,8 @@ To understand this course, familiarize yourself with the following C programming
 
 # Prerequisite Librarys
 ```shell
+sudo apt-get update
+sudo apt-get install libsdl2-dev libsdl2-image-dev #for parallel_image_processing_sdl
 sudo apt-get install libcurl4-openssl-dev #for testing parallel_downloader
 ```
 
