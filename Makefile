@@ -15,8 +15,16 @@ SRC_IMAGE = parallel_image_processing_sdl.c
 OBJS_IMAGE = $(SRC_IMAGE:.c=.o)
 TARGET_IMAGE = parallel_image_processing_sdl
 
-TARGETS = $(TARGET_PARALLEL_DOWNLOADER) $(TARGET_MATRIX_MULT) $(TARGET_IMAGE)
-OBJS = $(OBJS_PARALLEL_DOWNLOADER) $(OBJS_MATRIX_MULT) $(OBJS_IMAGE)
+SRC_SERVER = server_reservation.c
+OBJS_SERVER = $(SRC_SERVER:.c=.o)
+TARGET_SERVER = server
+
+SRC_CLIENT = client_reservation.c
+OBJS_CLIENT = $(SRC_CLIENT:.c=.o)
+TARGET_CLIENT = client
+
+TARGETS = $(TARGET_PARALLEL_DOWNLOADER) $(TARGET_MATRIX_MULT) $(TARGET_IMAGE) $(TARGET_SERVER) $(TARGET_CLIENT)
+OBJS = $(OBJS_PARALLEL_DOWNLOADER) $(OBJS_MATRIX_MULT) $(OBJS_IMAGE) $(OBJS_SERVER) $(OBJS_CLIENT)
 
 ############
 ### RULE ###
@@ -31,6 +39,12 @@ $(TARGET_MATRIX_MULT): $(OBJS_MATRIX_MULT)
 # Rule to build the parallel_image_processing_sdl executable
 $(TARGET_IMAGE): $(OBJS_IMAGE)
 
+# Rule to build the server (Should be complete first)
+$(TARGET_SERVER): $(OBJS_SERVER)
+	$(CC) $(CFLAGS) $(OBJS_SERVER) -o $@ $(LDLIBS)
+# Rule to build the client
+$(TARGET_CLIENT): $(OBJS_CLIENT)
+	$(CC) $(CFLAGS) $(OBJS_CLIENT) -o $@ $(LDLIBS)
 .PHONY: all
 all: $(TARGETS)
 
