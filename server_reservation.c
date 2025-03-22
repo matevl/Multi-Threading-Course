@@ -10,25 +10,36 @@
 #define BUFFER_SIZE 1024
 
 int seats[NUM_SEATS]; // Array representing available seats
-pthread_mutex_t mutex; // Mutex to protect seat access
+pthread_mutex_t mutex; // Mutex to protect access to seats
 
 /**
  * Function to handle client connections.
  *
- * @param arg Pointer to client connection information.
+ * @param arg Pointer to the client's connection information.
  * @return NULL
- * The objective is to :
- * 1 read the request in a buffer
- * 2 retrieve the place and id using “int sscanf(const char *restrict str, char *restrict format, ...)”,
- * 3 if the seat is free, reserve it and reply “Seat %d reserved for client %d\n”, otherwise reply
- * “Seat %d not available\n”.
- * 4 send the response using send
  */
 void* handle_client(void* arg) {
     int client_socket = *(int*)arg;
     char buffer[BUFFER_SIZE];
     int seat, client_id;
 
+    // Read the client's request
+    read(client_socket, buffer, BUFFER_SIZE);
+    sscanf(buffer, "RESERVE %d %d", &seat, &client_id);
+
+    // Check and reserve the seat
+    pthread_mutex_lock(&mutex);
+    if (seat >= 0 && seat < NUM_SEATS && seats[seat] == 0) {
+        seats[seat] = client_id;
+        sprintf(buffer, "Seat %d reserved for client %d\n", seat, client_id);
+    } else {
+        sprintf(buffer, "Seat %d not available\n", seat);
+    }
+    pthread_mutex_unlock(&mutex);
+
+    // Send the response to the client
+    send(client_socket, buffer, strlen(buffer), 0);
+    close(client_socket);
     pthread_exit(NULL);
 }
 

@@ -31,6 +31,8 @@ make all # Compile all given code
 ```shell
 make parallel_downloader # Compile parallel_downloader
 make matrix_mult # Compile matrix_mult
+make server client # compile server seat reservation
+make parallel_image_processing_sdl # compile the file to complete
 ```
 ```shell
 make clean # clean all binary and other trash files
@@ -74,4 +76,21 @@ int pthread_mutex_unlock(pthread_mutex_t *mutex);
 // Destruction
 int pthread_mutex_destroy(pthread_mutex_t *mutex);
 ```
+# parallel_image_processing_sdl
+You have to complete parallel_image_processing_sdl, don't worry, SDL-related code will be provided.
+Your goal is to apply a grayscale to resources/image1.jpg.
 
+>Remember that the grayscale formula is: gray_pixel = 0.3 * R + 0.59 * G + 0.11 * B
+
+You will use this struct to give arguments to the convert_to_grayscale function.
+```c++
+typedef struct {
+    unsigned char *image;
+    int width;
+    int height;
+    int start_row;
+    int end_row;
+} ImageArgs;
+```
+
+>Remember that the image is an array in row major order, and a pixel is 3 bytes (RGB)

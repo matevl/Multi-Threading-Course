@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+
+
 // Structure to pass arguments to the thread function
 typedef struct {
     unsigned char *image;
@@ -20,34 +22,12 @@ typedef struct {
  * @return NULL
  */
 void* convert_to_grayscale(void* arg) {
-    ImageArgs* args = (ImageArgs*)arg;
-    for (int i = args->start_row; i < args->end_row; ++i) {
-        for (int j = 0; j < args->width; ++j) {
-            int index = (i * args->width + j) * 3;
-            unsigned char gray = 0.3 * args->image[index] + 0.59 * args->image[index + 1] + 0.11 * args->image[index + 2];
-            args->image[index] = args->image[index + 1] = args->image[index + 2] = gray;
-        }
-    }
+    // complete with your code
     pthread_exit(NULL);
 }
 
 void parallel_image_processing(unsigned char *image, int width, int height, int num_threads) {
-    pthread_t threads[num_threads];
-    ImageArgs args[num_threads];
-    int rows_per_thread = height / num_threads;
-
-    for (int i = 0; i < num_threads; ++i) {
-        args[i].image = image;
-        args[i].width = width;
-        args[i].height = height;
-        args[i].start_row = i * rows_per_thread;
-        args[i].end_row = (i == num_threads - 1) ? height : args[i].start_row + rows_per_thread;
-        pthread_create(&threads[i], NULL, convert_to_grayscale, &args[i]);
-    }
-
-    for (int i = 0; i < num_threads; ++i) {
-        pthread_join(threads[i], NULL);
-    }
+    // Complete with you code
 }
 
 int main() {
